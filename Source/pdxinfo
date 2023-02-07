@@ -1,0 +1,6 @@
+name=Processes_PDDisc
+author=Orllewin
+description=An experimental album
+bundleID=orllewin.playdate.disc.processes
+version=1.0.1
+imagePath=Images/
