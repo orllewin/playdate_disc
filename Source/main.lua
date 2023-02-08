@@ -90,7 +90,6 @@ playNext()
 userSelectedTrack = nil
 userSelectedIndex = 1
 
---listview.backgroundImage = playdate.graphics.nineSlice.new('Images/empty_box', 4, 4, 45, 45)
 listview:setNumberOfRows(#tracks)
 listview:setCellPadding(3, 3, 3, 3)
 listview:setContentInset(0,0,0,0)
@@ -100,14 +99,22 @@ function listview:drawCell(section, row, column, selected, x, y, width, height)
 		local renderTrack = tracks[row]
 		if row == playIndex then
 			local label = "" .. row .. " " ..renderTrack.title
-			local textWidth = playdate.graphics.getTextSizeForMaxWidth(label, 400)
+			
+			--There's a bug with getTextSizeForMaxWidth 
+			local textWidth = playdate.graphics.getTextSizeForMaxWidth(label, 600)
+			if(textWidth > 400)then textWidth = 385 end
+			
 			playdate.graphics.setImageDrawMode(playdate.graphics.kDrawModeFillBlack)
 			playdate.graphics.fillRoundRect(x, y, textWidth + 10, height, 5)
 			playdate.graphics.setImageDrawMode(playdate.graphics.kDrawModeFillWhite)
 			playdate.graphics.drawText(label, x + 4, y+7)
 		elseif selected then
 			local label = "" .. row .. " " ..renderTrack.title
-			local textWidth = playdate.graphics.getTextSizeForMaxWidth(label, 400)
+			
+			--There's a bug with getTextSizeForMaxWidth 
+			local textWidth = playdate.graphics.getTextSizeForMaxWidth(label, 600)
+			if(textWidth > 400)then textWidth = 385 end
+			
 			userSelectedTrack = renderTrack
 			userSelectedIndex = row
 			playdate.graphics.setImageDrawMode(playdate.graphics.kDrawModeFillBlack)
